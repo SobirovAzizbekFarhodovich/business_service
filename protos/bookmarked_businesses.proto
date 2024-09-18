@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+option go_package = "genprotos/";
+
+package bookmarked_businesses;
+
+service Bookmarked_Businesses{
+
+}
+
+message CreateBookmarkedBusRequest{
+    string user_id = 1;
+    string business_id = 2;
+}
+
+message CreateBookmarkedBusResponse{}
+
+message DeleteBookmarkedBusRequest{
+    string user_id = 1;
+    string id = 2;
+}
+
+message DeleteBookmarkedBusResponse{}
+
+message GetBookmarkedBusByIdRequest{
+    string id = 1;
+    string user_id = 2;
+}
+
+message GetBookmarkedBusByIdResponse{
+    string user_id = 1;
+    string business_id = 2;
+    string id = 3;
+}
+
+message GetAllBookmarkedBusRequest{
+    string user_id = 1;
+}
+
+message GetAllBookmarkedBusResponse{
+    repeated GetBookmarkedBusByIdResponse businesses = 1;
+}

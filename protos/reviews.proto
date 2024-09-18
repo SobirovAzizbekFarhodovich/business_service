@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+option go_package = "genprotos/";
+
+package reviews;
+
+service Reviews{
+    rpc CreateReview(CreateReviewRequest) returns(CreateReviewResponse){}
+    rpc UpdateReview(UpdateReviewRequest) returns(UpdateReviewResponse){}
+    rpc DeleteReview(DeleteReviewRequest) returns(DeleteReviewResponse){}
+    rpc GetOwnReviews(GetOwnReviewsRequest) returns(GetOwnReviewsResponse){}
+    rpc GetReviewByBusinessId(GetReviewByBusinessIdRequest) returns(GetReviewByBusinessIdResponse){}
+}
+
+message CreateReviewRequest{
+    string business_id = 1;
+    string user_id = 2;
+    int32 rating = 3;
+    string text = 4; 
+}
+
+message CreateReviewResponse{}
+
+message UpdateReviewRequest{
+    string business_id = 1;
+    string user_id = 2;
+    int32 rating = 3;
+    string text = 4; 
+    string id = 5;
+}
+
+message UpdateReviewResponse{
+    string business_id = 1;
+    string user_id = 2;
+    int32 rating = 3;
+    string text = 4; 
+    string id = 5;
+}
+
+message DeleteReviewRequest{
+    string user_id = 1;
+    string id = 2;
+}
+
+message DeleteReviewResponse{}
+
+message GetOwnReviewsRequest{
+    string user_id = 1;
+}
+
+message GetOwnReviewsResponse{
+    repeated UpdateReviewRequest reviews = 1;
+}
+
+message GetReviewByBusinessIdRequest{
+    string business_id = 1;
+}
+
+message GetReviewByBusinessIdResponse{
+    repeated UpdateReviewRequest reviews = 1;
+}

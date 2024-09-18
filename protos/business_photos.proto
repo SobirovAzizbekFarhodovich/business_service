@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+option go_package = "genprotos/";
+
+package business_photos;
+
+service Business_Photos{
+    rpc CreateBusinessPhotos(CreateBusinessPhotosRequest) returns(CreateBusinessPhotosResponse){}
+    rpc UpdateBusinessPhotos(UpdateBusinessPhotosRequest) returns(UpdateBusinessPhotosResponse){}
+    rpc DeleteBusinessPhotos(DeleteBusinessPhotosRequest) returns(DeleteBusinessPhotosResponse){}
+    rpc GetByBusinessId(GetBusinessIdRequest) returns(GetBusinessIdResponse){}
+    rpc GetBusinessPhotosByOwner(GetBusinessPhotosByOwnerRequest) returns(GetBusinessPhotosByOwnerResponse){}
+}
+
+message CreateBusinessPhotosRequest{
+    string business_id = 1;
+    string photo_url = 2;
+    string owner_id = 3;
+}
+
+message CreateBusinessPhotosResponse{}
+
+message UpdateBusinessPhotosRequest{
+    string business_id = 1;
+    string photo_url = 2;
+    string owner_id = 3;
+}
+
+message UpdateBusinessPhotosResponse{
+    string business_id = 1;
+    string photo_url = 2;
+    string owner_id = 3;
+    string id = 4;
+}
+
+message DeleteBusinessPhotosRequest{
+    string id = 1;
+    string owner_id = 2;
+}
+
+message DeleteBusinessPhotosResponse{}
+
+message Business{
+    string photo_url = 1;
+}
+
+message GetBusinessIdRequest{
+    string business_id = 1;
+}
+
+message GetBusinessIdResponse{
+    repeated Business photos = 1;
+    string owner_id = 2;
+    string business_id = 3;
+}
+
+message GetBusinessPhotosByOwnerRequest{
+    string owner_id = 1;
+}
+
+message GetBusinessPhotosByOwnerResponse{
+    repeated GetBusinessIdResponse photos = 1;
+}

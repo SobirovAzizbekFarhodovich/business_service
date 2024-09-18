@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+option go_package = "genprotos/";
+
+package locations;
+
+service Location{
+    rpc CreateLocation(CreateLocationRequest) returns(CreateLocationResponse){}
+    rpc DeleteLocation(DeleteLocationRequest) returns(DeleteLocationResponse){}
+    rpc GetLocationById(GetLocationByIdRequest) returns(GetLocationByIdResponse){}
+    rpc GetAllLocations(GetAllLocationRequest) returns(GetAllLocationResponse){}
+}
+
+message CreateLocationRequest{
+    float latitude = 1;
+    float longitude = 2;
+    string address = 3;
+}
+
+message CreateLocationResponse{
+    string id = 1;
+}
+
+message DeleteLocationRequest{
+    string id = 1;    
+}
+
+message DeleteLocationResponse{}
+
+message GetLocationByIdRequest{
+    string id = 1;
+}
+
+message GetLocationByIdResponse{
+    float latitude = 1;
+    float longitude = 2;
+    string address = 3;
+    string id = 4;
+}
+
+message GetAllLocationRequest{
+    int32 page = 1;
+}
+
+message GetAllLocationResponse{
+    repeated GetLocationByIdResponse locations = 1;
+}
