@@ -16,7 +16,7 @@ func NewBookmarkedBusinessService(storage storage.StorageI) *BookmarkedBusinessS
 	return &BookmarkedBusinessService{storage: storage}
 }
 
-func (l *BookmarkedBusinessService) CreateBookmarkedBusiness(ctx context.Context, req *pb.CreateBookmarkedBusRequest) (*pb.CreateBookmarkedBusResponse, error) {
+func (l *BookmarkedBusinessService) CreateBookmarkedBusiness(ctx context.Context, req *pb.CreateBookmarkedBusinessRequest) (*pb.CreateBookmarkedBusinessResponse, error) {
 	_, err := l.storage.BookmarkedBusiness().CreateBookmarkedBus(req)
 	if err != nil {
 		return nil, err
@@ -24,7 +24,7 @@ func (l *BookmarkedBusinessService) CreateBookmarkedBusiness(ctx context.Context
 	return nil, nil
 }
 
-func (l *BookmarkedBusinessService) DeleteBookmarkedBusiness(ctx context.Context, req *pb.DeleteBookmarkedBusRequest) (*pb.DeleteBookmarkedBusResponse, error) {
+func (l *BookmarkedBusinessService) DeleteBookmarkedBusiness(ctx context.Context, req *pb.DeleteBookmarkedBusinessRequest) (*pb.DeleteBookmarkedBusinessResponse, error) {
 	_, err := l.storage.BookmarkedBusiness().DeleteBookmarkedBus(req)
 	if err != nil {
 		return nil, err
@@ -32,15 +32,15 @@ func (l *BookmarkedBusinessService) DeleteBookmarkedBusiness(ctx context.Context
 	return nil, nil
 }
 
-func (l *BookmarkedBusinessService) GetBookmarkedBusById(req *pb.GetBookmarkedBusByIdRequest) (*pb.GetBookmarkedBusByIdResponse, error) {
-	res, err := l.storage.BookmarkedBusiness().GetBookmarkedBusById(req)
+func (l *BookmarkedBusinessService) GetBookmarkedBusinessById(ctx context.Context, req *pb.GetBookmarkedBusinessByIdRequest) (*pb.GetBookmarkedBusinessByIdResponse, error) {
+	res, err := l.storage.BookmarkedBusiness().GetBookmarkedBusinessById(req)
 	if err != nil {
 		return nil, err
 	}
 	return res, nil
 }
 
-func (l *BookmarkedBusinessService) GetAllBookmarkedBus(req *pb.GetAllBookmarkedBusRequest) (*pb.GetAllBookmarkedBusResponse, error) {
+func (l *BookmarkedBusinessService) GetAllBookmarkedBusiness(ctx context.Context, req *pb.GetAllBookmarkedBusinessRequest) (*pb.GetAllBookmarkedBusinessResponse, error) {
 	res, err := l.storage.BookmarkedBusiness().GetAllBookmarkedBus(req)
 	if err != nil {
 		return nil, err

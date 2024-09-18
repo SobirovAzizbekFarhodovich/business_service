@@ -19,6 +19,12 @@ message CreateReviewRequest{
     string text = 4; 
 }
 
+message CreateReview{
+    string business_id = 1;
+    string text = 2; 
+    int32 rating = 3;
+}
+
 message CreateReviewResponse{}
 
 message UpdateReviewRequest{
@@ -42,6 +48,10 @@ message DeleteReviewRequest{
     string id = 2;
 }
 
+message DeleteReview{
+    string id = 1;
+}
+
 message DeleteReviewResponse{}
 
 message GetOwnReviewsRequest{
@@ -52,10 +62,16 @@ message GetOwnReviewsResponse{
     repeated UpdateReviewRequest reviews = 1;
 }
 
-message GetReviewByBusinessIdRequest{
+message GetReviewByBusinessIdRequest {
     string business_id = 1;
-}
-
+    int32 page = 2;
+  }
+  
 message GetReviewByBusinessIdResponse{
     repeated UpdateReviewRequest reviews = 1;
+}
+
+message GetReviewByBusinessIdWithAverageRatingResponse {
+    repeated UpdateReviewRequest reviews = 1;
+    double average_rating = 2; 
 }

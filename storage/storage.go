@@ -16,6 +16,8 @@ type BusinessI interface {
 	DeleteBusiness(req *pb.DeleteBusinessRequest) (*pb.DeleteBusinessResponse, error)
 	GetByIdBusiness(req *pb.GetByIdBusinessRequest) (*pb.GetByIdBusinessResponse, error)
 	GetAllBusinesses(req *pb.GetAllBusinessesRequest) (*pb.GetAllBusinessesResponse, error)
+	GetAverageRatingByBusinessId(businessId string) (float32, error)
+	
 }
 
 type LocationI interface {
@@ -42,9 +44,9 @@ type BusinessPhotosI interface{
 }
 
 type BookmarkedBusinessI interface{
-	CreateBookmarkedBus(req *pb.CreateBookmarkedBusRequest) (*pb.CreateBookmarkedBusResponse, error)
-	DeleteBookmarkedBus(req *pb.DeleteBookmarkedBusRequest) (*pb.DeleteBookmarkedBusResponse, error)
-	GetBookmarkedBusById(req *pb.GetBookmarkedBusByIdRequest) (*pb.GetBookmarkedBusByIdResponse, error)
-	GetAllBookmarkedBus(req *pb.GetAllBookmarkedBusRequest) (*pb.GetAllBookmarkedBusResponse, error)
+	CreateBookmarkedBus(req *pb.CreateBookmarkedBusinessRequest) (*pb.CreateBookmarkedBusinessResponse, error)
+	DeleteBookmarkedBus(req *pb.DeleteBookmarkedBusinessRequest) (*pb.DeleteBookmarkedBusinessResponse, error)
+	GetBookmarkedBusinessById(req *pb.GetBookmarkedBusinessByIdRequest) (*pb.GetBookmarkedBusinessByIdResponse, error)
+	GetAllBookmarkedBus(req *pb.GetAllBookmarkedBusinessRequest) (*pb.GetAllBookmarkedBusinessResponse, error)
 
 }

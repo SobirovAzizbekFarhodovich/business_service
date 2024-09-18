@@ -5,38 +5,49 @@ option go_package = "genprotos/";
 package bookmarked_businesses;
 
 service Bookmarked_Businesses{
-
+    rpc CreateBookmarkedBusiness(CreateBookmarkedBusinessRequest) returns(CreateBookmarkedBusinessResponse){}
+    rpc DeleteBookmarkedBusiness(DeleteBookmarkedBusinessRequest) returns(DeleteBookmarkedBusinessResponse){}
+    rpc GetBookmarkedBusinessById(GetBookmarkedBusinessByIdRequest) returns(GetBookmarkedBusinessByIdResponse){}
+    rpc GetAllBookmarkedBusiness(GetAllBookmarkedBusinessRequest) returns(GetAllBookmarkedBusinessResponse){}
 }
 
-message CreateBookmarkedBusRequest{
+message CreateBookmarkedBusinessRequest{
     string user_id = 1;
     string business_id = 2;
 }
 
-message CreateBookmarkedBusResponse{}
+message CreateBookmarked{
+    string business_id = 1;
+}
 
-message DeleteBookmarkedBusRequest{
+message CreateBookmarkedBusinessResponse{}
+
+message DeleteBookmarkedBusinessRequest{
     string user_id = 1;
     string id = 2;
 }
 
-message DeleteBookmarkedBusResponse{}
+message DeleteBookmarked{
+    string id = 1;
+}
 
-message GetBookmarkedBusByIdRequest{
+message DeleteBookmarkedBusinessResponse{}
+
+message GetBookmarkedBusinessByIdRequest{
     string id = 1;
     string user_id = 2;
 }
 
-message GetBookmarkedBusByIdResponse{
+message GetBookmarkedBusinessByIdResponse{
     string user_id = 1;
     string business_id = 2;
     string id = 3;
 }
 
-message GetAllBookmarkedBusRequest{
+message GetAllBookmarkedBusinessRequest{
     string user_id = 1;
 }
 
-message GetAllBookmarkedBusResponse{
-    repeated GetBookmarkedBusByIdResponse businesses = 1;
+message GetAllBookmarkedBusinessResponse{
+    repeated GetBookmarkedBusinessByIdResponse businesses = 1;
 }

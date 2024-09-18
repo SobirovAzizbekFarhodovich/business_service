@@ -17,6 +17,11 @@ message CreateLocationRequest{
     string address = 3;
 }
 
+message CreateLoc{
+    float latitude = 1;
+    float longitude = 2;
+}
+
 message CreateLocationResponse{
     string id = 1;
 }

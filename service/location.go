@@ -17,11 +17,11 @@ func NewLocationService(storage storage.StorageI) *LocationService {
 }
 
 func (l *LocationService) CreateLocation(ctx context.Context, req *pb.CreateLocationRequest) (*pb.CreateLocationResponse, error) {
-	_, err := l.storage.Location().CreateLocation(req)
+	res, err := l.storage.Location().CreateLocation(req)
 	if err != nil {
 		return nil, err
 	}
-	return nil, nil
+	return res, nil
 }
 
 func (l *LocationService) DeleteLocation(ctx context.Context, req *pb.DeleteLocationRequest) (*pb.DeleteLocationResponse, error) {
@@ -40,7 +40,7 @@ func (l *LocationService) GetLocationById(ctx context.Context, req *pb.GetLocati
 	return res, nil
 }
 
-func (l *LocationService) GetAllLocation(ctx context.Context, req *pb.GetAllLocationRequest) (*pb.GetAllLocationResponse, error) {
+func (l *LocationService) GetAllLocations(ctx context.Context, req *pb.GetAllLocationRequest) (*pb.GetAllLocationResponse, error) {
 	res, err := l.storage.Location().GetAllLocations(req)
 	if err != nil {
 		return nil, err

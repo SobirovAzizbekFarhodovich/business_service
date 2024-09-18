@@ -110,8 +110,15 @@ func (r *ReviewsStorage) GetOwnReviews(req *pb.GetOwnReviewsRequest) (*pb.GetOwn
 }
 
 func (r *ReviewsStorage) GetReviewByBusinessId(req *pb.GetReviewByBusinessIdRequest) (*pb.GetReviewByBusinessIdResponse, error) {
-	query := `SELECT id, business_id, user_id, rating, text FROM reviews WHERE business_id = $1`
-	rows, err := r.db.Query(query, req.BusinessId)
+	limit := 10
+	offset := (int(req.Page) - 1) * limit
+
+	query := `SELECT id, business_id, user_id, rating, text 
+	          FROM reviews 
+	          WHERE business_id = $1 
+	          LIMIT $2 OFFSET $3`
+
+	rows, err := r.db.Query(query, req.BusinessId, limit, offset)
 	if err != nil {
 		return nil, err
 	}
@@ -121,6 +128,7 @@ func (r *ReviewsStorage) GetReviewByBusinessId(req *pb.GetReviewByBusinessIdRequ
 	for rows.Next() {
 		var id, businessId, userId, text string
 		var rating int32
+
 		err := rows.Scan(&id, &businessId, &userId, &rating, &text)
 		if err != nil {
 			return nil, err

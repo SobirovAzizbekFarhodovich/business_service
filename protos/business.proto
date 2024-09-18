@@ -4,16 +4,16 @@ option go_package = "genprotos/";
 
 package business;
 
-service Business{
-    rpc CreateBusiness(CreateBusinessRequest) returns(CreateBusinessResponse){}
-    rpc UpdateBusiness(UpdateBusinessRequest) returns(UpdateBusinessResponse){}
-    rpc DeleteBusiness(DeleteBusinessRequest) returns(DeleteBusinessResponse){}
-    rpc GetByIdBusiness(GetByIdBusinessRequest) returns(GetByIdBusinessResponse){}
-    rpc GetAllBusinesses(GetAllBusinessesRequest) returns(GetAllBusinessesResponse){}
+service Business {
+    rpc CreateBusiness(CreateBusinessRequest) returns(CreateBusinessResponse) {}
+    rpc UpdateBusiness(UpdateBusinessRequest) returns(UpdateBusinessResponse) {}
+    rpc DeleteBusiness(DeleteBusinessRequest) returns(DeleteBusinessResponse) {}
+    rpc GetByIdBusiness(GetByIdBusinessRequest) returns(GetByIdBusinessResponse) {}
+    rpc GetAllBusinesses(GetAllBusinessesRequest) returns(GetAllBusinessesResponse) {}
 }
 
-message CreateBusinessRequest{
-    string name  = 1;
+message CreateBusinessRequest {
+    string name = 1;
     string description = 2;
     string category = 3;
     string contact_info = 4;
@@ -22,9 +22,18 @@ message CreateBusinessRequest{
     string location_id = 7;
 }
 
-message CreateBusinessResponse{}
+message CreateBusinessResponse {}
 
-message UpdateBusinessRequest{
+message CreateBusiness {
+    string name = 1;
+    string description = 2;
+    string category = 3;
+    string contact_info = 4;
+    string hours_of_operation = 5;
+    string location_id = 6;
+}
+
+message UpdateBusinessRequest {
     string id = 1;
     string name = 2;
     string description = 3;
@@ -33,32 +42,43 @@ message UpdateBusinessRequest{
     string hours_of_operation = 6;
     string owner_id = 7;
     string location_id = 8;
-
 }
 
-message UpdateBusinessResponse{
-    string name  = 1;
+message UpdateBusiness {
+    string location_id = 1;
+    string name = 2;
+    string description = 3;
+    string category = 4;
+    string contact_info = 5;
+    string hours_of_operation = 6;
+}
+
+message UpdateBusinessResponse {
+    string name = 1;
     string description = 2;
     string category = 3;
     string contact_info = 4;
     string hours_of_operation = 5;
     string owner_id = 6;
     string location_id = 7;
-
 }
 
-message DeleteBusinessRequest{
+message DeleteBusinessRequest {
     string id = 1;
     string owner_id = 2;
 }
 
-message DeleteBusinessResponse{}
+message DeleteBusinessResponse {}
 
-message GetByIdBusinessRequest{
+message DeleteBusiness {
     string id = 1;
 }
 
-message GetByIdBusinessResponse{
+message GetByIdBusinessRequest {
+    string id = 1;
+}
+
+message GetByIdBusinessResponse {
     string id = 1;
     string name = 2;
     string description = 3;
@@ -68,10 +88,10 @@ message GetByIdBusinessResponse{
     string owner_id = 7;
     float average_ratings = 8;
     string location_id = 9;
-
+    Location location = 10; 
 }
 
-message GetAllBusinessesRequest{
+message GetAllBusinessesRequest {
     int32 page = 1;
     string name = 2;
     float average_ratings = 3;
@@ -79,10 +99,15 @@ message GetAllBusinessesRequest{
     string contact_info = 5;
     string hours_of_operation = 6;
     string owner_id = 7;
-    string location = 8;
-
 }
 
-message GetAllBusinessesResponse{
+message GetAllBusinessesResponse {
     repeated GetByIdBusinessResponse businesses = 1;
+}
+
+message Location {
+    float latitude = 1;
+    float longitude = 2;
+    string address = 3;
+    string id = 4;
 }

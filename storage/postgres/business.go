@@ -92,17 +92,42 @@ func (b *BusinessStorage) DeleteBusiness(req *pb.DeleteBusinessRequest) (*pb.Del
 }
 
 func (b *BusinessStorage) GetByIdBusiness(req *pb.GetByIdBusinessRequest) (*pb.GetByIdBusinessResponse, error) {
-	query := `SELECT id, name, description, category, contact_info, hours_of_operation, owner_id, average_ratings, location_id 
+	query := `SELECT id, name, description, category, contact_info, hours_of_operation, owner_id, location_id 
 	          FROM businesses WHERE id = $1`
 	var id, name, description, category, contactInfo, hoursOfOperation, ownerId, locationId string
-	var averageRatings float32
 
-	err := b.db.QueryRow(query, req.Id).Scan(&id, &name, &description, &category, &contactInfo, &hoursOfOperation, &ownerId, &averageRatings, &locationId)
+	err := b.db.QueryRow(query, req.Id).Scan(&id, &name, &description, &category, &contactInfo, &hoursOfOperation, &ownerId, &locationId)
 	if err != nil {
 		if err == sql.ErrNoRows {
 			return nil, fmt.Errorf("business not found")
 		}
 		return nil, err
+	}
+
+	averageRating, err := b.GetAverageRatingByBusinessId(id)
+	if err != nil {
+		return nil, err
+	}
+
+	var location *pb.Location
+	if locationId != "" {
+		locationQuery := `SELECT latitude, longitude, address FROM locations WHERE id = $1`
+		var latitude, longitude float32
+		var address string
+
+		err = b.db.QueryRow(locationQuery, locationId).Scan(&latitude, &longitude, &address)
+		if err != nil {
+			if err == sql.ErrNoRows {
+				return nil, fmt.Errorf("location not found")
+			}
+			return nil, err
+		}
+
+		location = &pb.Location{
+			Latitude:  latitude,
+			Longitude: longitude,
+			Address:   address,
+		}
 	}
 
 	response := &pb.GetByIdBusinessResponse{
@@ -113,18 +138,55 @@ func (b *BusinessStorage) GetByIdBusiness(req *pb.GetByIdBusinessRequest) (*pb.G
 		ContactInfo:      contactInfo,
 		HoursOfOperation: hoursOfOperation,
 		OwnerId:          ownerId,
-		AverageRatings:   averageRatings,
+		AverageRatings:   averageRating, 
 		LocationId:       locationId,
+		Location:         location,
 	}
 	return response, nil
 }
 
 func (b *BusinessStorage) GetAllBusinesses(req *pb.GetAllBusinessesRequest) (*pb.GetAllBusinessesResponse, error) {
-	query := `SELECT id, name, description, category, contact_info, hours_of_operation, owner_id, average_ratings, location_id 
-	          FROM businesses LIMIT 10 OFFSET $1`
-	offset := (req.Page - 1) * 10
+	query := `SELECT id, name, description, category, contact_info, hours_of_operation, owner_id, location_id 
+	          FROM businesses WHERE 1=1`
 
-	rows, err := b.db.Query(query, offset)
+	args := []interface{}{}
+	argIndex := 1
+
+	if req.Name != "" {
+		query += fmt.Sprintf(" AND name ILIKE $%d", argIndex)
+		args = append(args, "%"+req.Name+"%")
+		argIndex++
+	}
+	if req.Category != "" {
+		query += fmt.Sprintf(" AND category ILIKE $%d", argIndex)
+		args = append(args, "%"+req.Category+"%")
+		argIndex++
+	}
+	if req.ContactInfo != "" {
+		query += fmt.Sprintf(" AND contact_info ILIKE $%d", argIndex)
+		args = append(args, "%"+req.ContactInfo+"%")
+		argIndex++
+	}
+	if req.HoursOfOperation != "" {
+		query += fmt.Sprintf(" AND hours_of_operation ILIKE $%d", argIndex)
+		args = append(args, "%"+req.HoursOfOperation+"%")
+		argIndex++
+	}
+	if req.OwnerId != "" {
+		query += fmt.Sprintf(" AND owner_id = $%d", argIndex)
+		args = append(args, req.OwnerId)
+		argIndex++
+	}
+	if req.AverageRatings > 0 {
+		query += fmt.Sprintf(" AND id IN (SELECT business_id FROM reviews GROUP BY business_id HAVING AVG(rating) = $%d)", argIndex)
+		args = append(args, req.AverageRatings)
+		argIndex++
+	}
+
+	query += fmt.Sprintf(" LIMIT 10 OFFSET $%d", argIndex)
+	args = append(args, (req.Page-1)*10)
+
+	rows, err := b.db.Query(query, args...)
 	if err != nil {
 		return nil, err
 	}
@@ -133,10 +195,34 @@ func (b *BusinessStorage) GetAllBusinesses(req *pb.GetAllBusinessesRequest) (*pb
 	var businesses []*pb.GetByIdBusinessResponse
 	for rows.Next() {
 		var id, name, description, category, contactInfo, hoursOfOperation, ownerId, locationId string
-		var averageRatings float32
-		err := rows.Scan(&id, &name, &description, &category, &contactInfo, &hoursOfOperation, &ownerId, &averageRatings, &locationId)
+		err := rows.Scan(&id, &name, &description, &category, &contactInfo, &hoursOfOperation, &ownerId, &locationId)
 		if err != nil {
-			continue
+			return nil, err
+		}
+
+		averageRating, err := b.GetAverageRatingByBusinessId(id)
+		if err != nil {
+			return nil, err
+		}
+
+		var location *pb.Location
+		if locationId != "" {
+			locationQuery := `SELECT latitude, longitude, address FROM locations WHERE id = $1`
+			var latitude, longitude float32
+			var address string
+
+			err = b.db.QueryRow(locationQuery, locationId).Scan(&latitude, &longitude, &address)
+			if err != nil {
+				if err != sql.ErrNoRows {
+					return nil, err
+				}
+			} else {
+				location = &pb.Location{
+					Latitude:  latitude,
+					Longitude: longitude,
+					Address:   address,
+				}
+			}
 		}
 
 		business := &pb.GetByIdBusinessResponse{
@@ -147,8 +233,9 @@ func (b *BusinessStorage) GetAllBusinesses(req *pb.GetAllBusinessesRequest) (*pb
 			ContactInfo:      contactInfo,
 			HoursOfOperation: hoursOfOperation,
 			OwnerId:          ownerId,
-			AverageRatings:   averageRatings,
+			AverageRatings:   averageRating,
 			LocationId:       locationId,
+			Location:         location,
 		}
 		businesses = append(businesses, business)
 	}
@@ -157,4 +244,18 @@ func (b *BusinessStorage) GetAllBusinesses(req *pb.GetAllBusinessesRequest) (*pb
 		Businesses: businesses,
 	}
 	return response, nil
+}
+
+
+func (b *BusinessStorage) GetAverageRatingByBusinessId(businessId string) (float32, error) {
+	query := `SELECT AVG(rating) FROM reviews WHERE business_id = $1`
+	var averageRating sql.NullFloat64
+	err := b.db.QueryRow(query, businessId).Scan(&averageRating)
+	if err != nil {
+		return 0, err
+	}
+	if averageRating.Valid {
+		return float32(averageRating.Float64), nil
+	}
+	return 0, nil
 }

@@ -14,7 +14,7 @@ func NewBookmarkedBusinessesStorage(db *sql.DB) *BookmarkedBusinessesStorage {
 	return &BookmarkedBusinessesStorage{db: db}
 }
 
-func (b *BookmarkedBusinessesStorage) CreateBookmarkedBus(req *pb.CreateBookmarkedBusRequest) (*pb.CreateBookmarkedBusResponse, error) {
+func (b *BookmarkedBusinessesStorage) CreateBookmarkedBus(req *pb.CreateBookmarkedBusinessRequest) (*pb.CreateBookmarkedBusinessResponse, error) {
 	query := `
 	INSERT INTO bookmarked_businesses(
 		user_id,
@@ -24,19 +24,19 @@ func (b *BookmarkedBusinessesStorage) CreateBookmarkedBus(req *pb.CreateBookmark
 	if err != nil {
 		return nil, err
 	}
-	return &pb.CreateBookmarkedBusResponse{}, nil
+	return &pb.CreateBookmarkedBusinessResponse{}, nil
 }
 
-func (b *BookmarkedBusinessesStorage) DeleteBookmarkedBus(req *pb.DeleteBookmarkedBusRequest) (*pb.DeleteBookmarkedBusResponse, error) {
+func (b *BookmarkedBusinessesStorage) DeleteBookmarkedBus(req *pb.DeleteBookmarkedBusinessRequest) (*pb.DeleteBookmarkedBusinessResponse, error) {
 	query := `DELETE FROM bookmarked_businesses WHERE id = $1 AND user_id = $2`
 	_, err := b.db.Exec(query, req.Id, req.UserId)
 	if err != nil {
 		return nil, err
 	}
-	return &pb.DeleteBookmarkedBusResponse{}, nil
+	return &pb.DeleteBookmarkedBusinessResponse{}, nil
 }
 
-func (b *BookmarkedBusinessesStorage) GetBookmarkedBusById(req *pb.GetBookmarkedBusByIdRequest) (*pb.GetBookmarkedBusByIdResponse, error) {
+func (b *BookmarkedBusinessesStorage) GetBookmarkedBusinessById(req *pb.GetBookmarkedBusinessByIdRequest) (*pb.GetBookmarkedBusinessByIdResponse, error) {
 	query := `SELECT user_id, business_id, id FROM bookmarked_businesses WHERE id = $1 AND user_id = $2`
 	var userId, businessId, id string
 	err := b.db.QueryRow(query, req.Id, req.UserId).Scan(&userId, &businessId, &id)
@@ -47,7 +47,7 @@ func (b *BookmarkedBusinessesStorage) GetBookmarkedBusById(req *pb.GetBookmarked
 		return nil, err
 	}
 
-	response := &pb.GetBookmarkedBusByIdResponse{
+	response := &pb.GetBookmarkedBusinessByIdResponse{
 		UserId:     userId,
 		BusinessId: businessId,
 		Id:         id,
@@ -56,7 +56,7 @@ func (b *BookmarkedBusinessesStorage) GetBookmarkedBusById(req *pb.GetBookmarked
 	return response, nil
 }
 
-func (b *BookmarkedBusinessesStorage) GetAllBookmarkedBus(req *pb.GetAllBookmarkedBusRequest) (*pb.GetAllBookmarkedBusResponse, error) {
+func (b *BookmarkedBusinessesStorage) GetAllBookmarkedBus(req *pb.GetAllBookmarkedBusinessRequest) (*pb.GetAllBookmarkedBusinessResponse, error) {
 	query := `SELECT id, user_id, business_id FROM bookmarked_businesses WHERE user_id = $1`
 	rows, err := b.db.Query(query, req.UserId)
 	if err != nil {
@@ -64,7 +64,7 @@ func (b *BookmarkedBusinessesStorage) GetAllBookmarkedBus(req *pb.GetAllBookmark
 	}
 	defer rows.Close()
 
-	var businesses []*pb.GetBookmarkedBusByIdResponse
+	var businesses []*pb.GetBookmarkedBusinessByIdResponse
 	for rows.Next() {
 		var id, userId, businessId string
 		err := rows.Scan(&id, &userId, &businessId)
@@ -72,7 +72,7 @@ func (b *BookmarkedBusinessesStorage) GetAllBookmarkedBus(req *pb.GetAllBookmark
 			return nil, err
 		}
 
-		business := &pb.GetBookmarkedBusByIdResponse{
+		business := &pb.GetBookmarkedBusinessByIdResponse{
 			Id:          id,
 			UserId:      userId,
 			BusinessId:  businessId,
@@ -80,7 +80,7 @@ func (b *BookmarkedBusinessesStorage) GetAllBookmarkedBus(req *pb.GetAllBookmark
 		businesses = append(businesses, business)
 	}
 
-	response := &pb.GetAllBookmarkedBusResponse{
+	response := &pb.GetAllBookmarkedBusinessResponse{
 		Businesses: businesses,
 	}
 	return response, nil

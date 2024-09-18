@@ -1,4 +1,12 @@
-CREATE TABLE businesses{
+CREATE TABLE locations (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    latitude DOUBLE PRECISION NOT NULL,
+    longitude DOUBLE PRECISION NOT NULL,
+    address VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE businesses (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     owner_id UUID NOT NULL,
     name VARCHAR(25) NOT NULL,
@@ -10,7 +18,7 @@ CREATE TABLE businesses{
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     deleted_at BIGINT DEFAULT 0
-}
+);
 
 CREATE TABLE business_photos (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -20,7 +28,6 @@ CREATE TABLE business_photos (
     uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-
 CREATE TABLE reviews (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     business_id UUID REFERENCES businesses(id) ON DELETE CASCADE,
@@ -29,21 +36,14 @@ CREATE TABLE reviews (
     text TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    deleted_at BIGINT DEFAULT 0
+    deleted_at BIGINT DEFAULT 0,
+    CONSTRAINT unique_user_business UNIQUE (user_id, business_id)
 );
+
 
 CREATE TABLE bookmarked_businesses (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID NOT NULL,
     business_id UUID REFERENCES businesses(id) ON DELETE CASCADE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-
-CREATE TABLE locations (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    latitude DOUBLE PRECISION NOT NULL,
-    longitude DOUBLE PRECISION NOT NULL,
-    address VARCHAR(255),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 );

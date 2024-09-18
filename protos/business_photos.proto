@@ -18,12 +18,23 @@ message CreateBusinessPhotosRequest{
     string owner_id = 3;
 }
 
+message CreatePhotos{
+    string business_id = 1;
+    string photo_url = 2;
+}
+
 message CreateBusinessPhotosResponse{}
 
 message UpdateBusinessPhotosRequest{
     string business_id = 1;
     string photo_url = 2;
     string owner_id = 3;
+    string id = 4;
+}
+
+message UpdatePhotos{
+    string business_id = 1;
+    string photo_url = 2;
 }
 
 message UpdateBusinessPhotosResponse{
@@ -36,6 +47,9 @@ message UpdateBusinessPhotosResponse{
 message DeleteBusinessPhotosRequest{
     string id = 1;
     string owner_id = 2;
+}
+message DeletePhotos{
+    string id = 1;
 }
 
 message DeleteBusinessPhotosResponse{}

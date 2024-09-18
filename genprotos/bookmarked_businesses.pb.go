@@ -20,7 +20,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type CreateBookmarkedBusRequest struct {
+type CreateBookmarkedBusinessRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -29,8 +29,8 @@ type CreateBookmarkedBusRequest struct {
 	BusinessId string `protobuf:"bytes,2,opt,name=business_id,json=businessId,proto3" json:"business_id,omitempty"`
 }
 
-func (x *CreateBookmarkedBusRequest) Reset() {
-	*x = CreateBookmarkedBusRequest{}
+func (x *CreateBookmarkedBusinessRequest) Reset() {
+	*x = CreateBookmarkedBusinessRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_bookmarked_businesses_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -38,13 +38,13 @@ func (x *CreateBookmarkedBusRequest) Reset() {
 	}
 }
 
-func (x *CreateBookmarkedBusRequest) String() string {
+func (x *CreateBookmarkedBusinessRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateBookmarkedBusRequest) ProtoMessage() {}
+func (*CreateBookmarkedBusinessRequest) ProtoMessage() {}
 
-func (x *CreateBookmarkedBusRequest) ProtoReflect() protoreflect.Message {
+func (x *CreateBookmarkedBusinessRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_bookmarked_businesses_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -56,33 +56,35 @@ func (x *CreateBookmarkedBusRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateBookmarkedBusRequest.ProtoReflect.Descriptor instead.
-func (*CreateBookmarkedBusRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use CreateBookmarkedBusinessRequest.ProtoReflect.Descriptor instead.
+func (*CreateBookmarkedBusinessRequest) Descriptor() ([]byte, []int) {
 	return file_bookmarked_businesses_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *CreateBookmarkedBusRequest) GetUserId() string {
+func (x *CreateBookmarkedBusinessRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
 	return ""
 }
 
-func (x *CreateBookmarkedBusRequest) GetBusinessId() string {
+func (x *CreateBookmarkedBusinessRequest) GetBusinessId() string {
 	if x != nil {
 		return x.BusinessId
 	}
 	return ""
 }
 
-type CreateBookmarkedBusResponse struct {
+type CreateBookmarked struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
+
+	BusinessId string `protobuf:"bytes,1,opt,name=business_id,json=businessId,proto3" json:"business_id,omitempty"`
 }
 
-func (x *CreateBookmarkedBusResponse) Reset() {
-	*x = CreateBookmarkedBusResponse{}
+func (x *CreateBookmarked) Reset() {
+	*x = CreateBookmarked{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_bookmarked_businesses_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -90,13 +92,13 @@ func (x *CreateBookmarkedBusResponse) Reset() {
 	}
 }
 
-func (x *CreateBookmarkedBusResponse) String() string {
+func (x *CreateBookmarked) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateBookmarkedBusResponse) ProtoMessage() {}
+func (*CreateBookmarked) ProtoMessage() {}
 
-func (x *CreateBookmarkedBusResponse) ProtoReflect() protoreflect.Message {
+func (x *CreateBookmarked) ProtoReflect() protoreflect.Message {
 	mi := &file_bookmarked_businesses_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -108,22 +110,26 @@ func (x *CreateBookmarkedBusResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateBookmarkedBusResponse.ProtoReflect.Descriptor instead.
-func (*CreateBookmarkedBusResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use CreateBookmarked.ProtoReflect.Descriptor instead.
+func (*CreateBookmarked) Descriptor() ([]byte, []int) {
 	return file_bookmarked_businesses_proto_rawDescGZIP(), []int{1}
 }
 
-type DeleteBookmarkedBusRequest struct {
+func (x *CreateBookmarked) GetBusinessId() string {
+	if x != nil {
+		return x.BusinessId
+	}
+	return ""
+}
+
+type CreateBookmarkedBusinessResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
-
-	UserId string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Id     string `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
 }
 
-func (x *DeleteBookmarkedBusRequest) Reset() {
-	*x = DeleteBookmarkedBusRequest{}
+func (x *CreateBookmarkedBusinessResponse) Reset() {
+	*x = CreateBookmarkedBusinessResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_bookmarked_businesses_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -131,13 +137,13 @@ func (x *DeleteBookmarkedBusRequest) Reset() {
 	}
 }
 
-func (x *DeleteBookmarkedBusRequest) String() string {
+func (x *CreateBookmarkedBusinessResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DeleteBookmarkedBusRequest) ProtoMessage() {}
+func (*CreateBookmarkedBusinessResponse) ProtoMessage() {}
 
-func (x *DeleteBookmarkedBusRequest) ProtoReflect() protoreflect.Message {
+func (x *CreateBookmarkedBusinessResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_bookmarked_businesses_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -149,33 +155,22 @@ func (x *DeleteBookmarkedBusRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DeleteBookmarkedBusRequest.ProtoReflect.Descriptor instead.
-func (*DeleteBookmarkedBusRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use CreateBookmarkedBusinessResponse.ProtoReflect.Descriptor instead.
+func (*CreateBookmarkedBusinessResponse) Descriptor() ([]byte, []int) {
 	return file_bookmarked_businesses_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *DeleteBookmarkedBusRequest) GetUserId() string {
-	if x != nil {
-		return x.UserId
-	}
-	return ""
-}
-
-func (x *DeleteBookmarkedBusRequest) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-type DeleteBookmarkedBusResponse struct {
+type DeleteBookmarkedBusinessRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
+
+	UserId string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Id     string `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
 }
 
-func (x *DeleteBookmarkedBusResponse) Reset() {
-	*x = DeleteBookmarkedBusResponse{}
+func (x *DeleteBookmarkedBusinessRequest) Reset() {
+	*x = DeleteBookmarkedBusinessRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_bookmarked_businesses_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -183,13 +178,13 @@ func (x *DeleteBookmarkedBusResponse) Reset() {
 	}
 }
 
-func (x *DeleteBookmarkedBusResponse) String() string {
+func (x *DeleteBookmarkedBusinessRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DeleteBookmarkedBusResponse) ProtoMessage() {}
+func (*DeleteBookmarkedBusinessRequest) ProtoMessage() {}
 
-func (x *DeleteBookmarkedBusResponse) ProtoReflect() protoreflect.Message {
+func (x *DeleteBookmarkedBusinessRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_bookmarked_businesses_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -201,22 +196,35 @@ func (x *DeleteBookmarkedBusResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DeleteBookmarkedBusResponse.ProtoReflect.Descriptor instead.
-func (*DeleteBookmarkedBusResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use DeleteBookmarkedBusinessRequest.ProtoReflect.Descriptor instead.
+func (*DeleteBookmarkedBusinessRequest) Descriptor() ([]byte, []int) {
 	return file_bookmarked_businesses_proto_rawDescGZIP(), []int{3}
 }
 
-type GetBookmarkedBusByIdRequest struct {
+func (x *DeleteBookmarkedBusinessRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *DeleteBookmarkedBusinessRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type DeleteBookmarked struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id     string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	UserId string `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 }
 
-func (x *GetBookmarkedBusByIdRequest) Reset() {
-	*x = GetBookmarkedBusByIdRequest{}
+func (x *DeleteBookmarked) Reset() {
+	*x = DeleteBookmarked{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_bookmarked_businesses_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -224,13 +232,13 @@ func (x *GetBookmarkedBusByIdRequest) Reset() {
 	}
 }
 
-func (x *GetBookmarkedBusByIdRequest) String() string {
+func (x *DeleteBookmarked) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetBookmarkedBusByIdRequest) ProtoMessage() {}
+func (*DeleteBookmarked) ProtoMessage() {}
 
-func (x *GetBookmarkedBusByIdRequest) ProtoReflect() protoreflect.Message {
+func (x *DeleteBookmarked) ProtoReflect() protoreflect.Message {
 	mi := &file_bookmarked_businesses_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -242,37 +250,26 @@ func (x *GetBookmarkedBusByIdRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetBookmarkedBusByIdRequest.ProtoReflect.Descriptor instead.
-func (*GetBookmarkedBusByIdRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use DeleteBookmarked.ProtoReflect.Descriptor instead.
+func (*DeleteBookmarked) Descriptor() ([]byte, []int) {
 	return file_bookmarked_businesses_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *GetBookmarkedBusByIdRequest) GetId() string {
+func (x *DeleteBookmarked) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *GetBookmarkedBusByIdRequest) GetUserId() string {
-	if x != nil {
-		return x.UserId
-	}
-	return ""
-}
-
-type GetBookmarkedBusByIdResponse struct {
+type DeleteBookmarkedBusinessResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
-
-	UserId     string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	BusinessId string `protobuf:"bytes,2,opt,name=business_id,json=businessId,proto3" json:"business_id,omitempty"`
-	Id         string `protobuf:"bytes,3,opt,name=id,proto3" json:"id,omitempty"`
 }
 
-func (x *GetBookmarkedBusByIdResponse) Reset() {
-	*x = GetBookmarkedBusByIdResponse{}
+func (x *DeleteBookmarkedBusinessResponse) Reset() {
+	*x = DeleteBookmarkedBusinessResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_bookmarked_businesses_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -280,13 +277,13 @@ func (x *GetBookmarkedBusByIdResponse) Reset() {
 	}
 }
 
-func (x *GetBookmarkedBusByIdResponse) String() string {
+func (x *DeleteBookmarkedBusinessResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetBookmarkedBusByIdResponse) ProtoMessage() {}
+func (*DeleteBookmarkedBusinessResponse) ProtoMessage() {}
 
-func (x *GetBookmarkedBusByIdResponse) ProtoReflect() protoreflect.Message {
+func (x *DeleteBookmarkedBusinessResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_bookmarked_businesses_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -298,42 +295,22 @@ func (x *GetBookmarkedBusByIdResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetBookmarkedBusByIdResponse.ProtoReflect.Descriptor instead.
-func (*GetBookmarkedBusByIdResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use DeleteBookmarkedBusinessResponse.ProtoReflect.Descriptor instead.
+func (*DeleteBookmarkedBusinessResponse) Descriptor() ([]byte, []int) {
 	return file_bookmarked_businesses_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *GetBookmarkedBusByIdResponse) GetUserId() string {
-	if x != nil {
-		return x.UserId
-	}
-	return ""
-}
-
-func (x *GetBookmarkedBusByIdResponse) GetBusinessId() string {
-	if x != nil {
-		return x.BusinessId
-	}
-	return ""
-}
-
-func (x *GetBookmarkedBusByIdResponse) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-type GetAllBookmarkedBusRequest struct {
+type GetBookmarkedBusinessByIdRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UserId string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Id     string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	UserId string `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 }
 
-func (x *GetAllBookmarkedBusRequest) Reset() {
-	*x = GetAllBookmarkedBusRequest{}
+func (x *GetBookmarkedBusinessByIdRequest) Reset() {
+	*x = GetBookmarkedBusinessByIdRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_bookmarked_businesses_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -341,13 +318,13 @@ func (x *GetAllBookmarkedBusRequest) Reset() {
 	}
 }
 
-func (x *GetAllBookmarkedBusRequest) String() string {
+func (x *GetBookmarkedBusinessByIdRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetAllBookmarkedBusRequest) ProtoMessage() {}
+func (*GetBookmarkedBusinessByIdRequest) ProtoMessage() {}
 
-func (x *GetAllBookmarkedBusRequest) ProtoReflect() protoreflect.Message {
+func (x *GetBookmarkedBusinessByIdRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_bookmarked_businesses_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -359,28 +336,37 @@ func (x *GetAllBookmarkedBusRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetAllBookmarkedBusRequest.ProtoReflect.Descriptor instead.
-func (*GetAllBookmarkedBusRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetBookmarkedBusinessByIdRequest.ProtoReflect.Descriptor instead.
+func (*GetBookmarkedBusinessByIdRequest) Descriptor() ([]byte, []int) {
 	return file_bookmarked_businesses_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *GetAllBookmarkedBusRequest) GetUserId() string {
+func (x *GetBookmarkedBusinessByIdRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *GetBookmarkedBusinessByIdRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
 	return ""
 }
 
-type GetAllBookmarkedBusResponse struct {
+type GetBookmarkedBusinessByIdResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Businesses []*GetBookmarkedBusByIdResponse `protobuf:"bytes,1,rep,name=businesses,proto3" json:"businesses,omitempty"`
+	UserId     string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	BusinessId string `protobuf:"bytes,2,opt,name=business_id,json=businessId,proto3" json:"business_id,omitempty"`
+	Id         string `protobuf:"bytes,3,opt,name=id,proto3" json:"id,omitempty"`
 }
 
-func (x *GetAllBookmarkedBusResponse) Reset() {
-	*x = GetAllBookmarkedBusResponse{}
+func (x *GetBookmarkedBusinessByIdResponse) Reset() {
+	*x = GetBookmarkedBusinessByIdResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_bookmarked_businesses_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -388,13 +374,13 @@ func (x *GetAllBookmarkedBusResponse) Reset() {
 	}
 }
 
-func (x *GetAllBookmarkedBusResponse) String() string {
+func (x *GetBookmarkedBusinessByIdResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetAllBookmarkedBusResponse) ProtoMessage() {}
+func (*GetBookmarkedBusinessByIdResponse) ProtoMessage() {}
 
-func (x *GetAllBookmarkedBusResponse) ProtoReflect() protoreflect.Message {
+func (x *GetBookmarkedBusinessByIdResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_bookmarked_businesses_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -406,12 +392,120 @@ func (x *GetAllBookmarkedBusResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetAllBookmarkedBusResponse.ProtoReflect.Descriptor instead.
-func (*GetAllBookmarkedBusResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetBookmarkedBusinessByIdResponse.ProtoReflect.Descriptor instead.
+func (*GetBookmarkedBusinessByIdResponse) Descriptor() ([]byte, []int) {
 	return file_bookmarked_businesses_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *GetAllBookmarkedBusResponse) GetBusinesses() []*GetBookmarkedBusByIdResponse {
+func (x *GetBookmarkedBusinessByIdResponse) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *GetBookmarkedBusinessByIdResponse) GetBusinessId() string {
+	if x != nil {
+		return x.BusinessId
+	}
+	return ""
+}
+
+func (x *GetBookmarkedBusinessByIdResponse) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type GetAllBookmarkedBusinessRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserId string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+}
+
+func (x *GetAllBookmarkedBusinessRequest) Reset() {
+	*x = GetAllBookmarkedBusinessRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_bookmarked_businesses_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetAllBookmarkedBusinessRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAllBookmarkedBusinessRequest) ProtoMessage() {}
+
+func (x *GetAllBookmarkedBusinessRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_bookmarked_businesses_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAllBookmarkedBusinessRequest.ProtoReflect.Descriptor instead.
+func (*GetAllBookmarkedBusinessRequest) Descriptor() ([]byte, []int) {
+	return file_bookmarked_businesses_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *GetAllBookmarkedBusinessRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+type GetAllBookmarkedBusinessResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Businesses []*GetBookmarkedBusinessByIdResponse `protobuf:"bytes,1,rep,name=businesses,proto3" json:"businesses,omitempty"`
+}
+
+func (x *GetAllBookmarkedBusinessResponse) Reset() {
+	*x = GetAllBookmarkedBusinessResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_bookmarked_businesses_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetAllBookmarkedBusinessResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAllBookmarkedBusinessResponse) ProtoMessage() {}
+
+func (x *GetAllBookmarkedBusinessResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_bookmarked_businesses_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAllBookmarkedBusinessResponse.ProtoReflect.Descriptor instead.
+func (*GetAllBookmarkedBusinessResponse) Descriptor() ([]byte, []int) {
+	return file_bookmarked_businesses_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *GetAllBookmarkedBusinessResponse) GetBusinesses() []*GetBookmarkedBusinessByIdResponse {
 	if x != nil {
 		return x.Businesses
 	}
@@ -424,45 +518,90 @@ var file_bookmarked_businesses_proto_rawDesc = []byte{
 	0x0a, 0x1b, 0x62, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64, 0x5f, 0x62, 0x75, 0x73,
 	0x69, 0x6e, 0x65, 0x73, 0x73, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x15, 0x62,
 	0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64, 0x5f, 0x62, 0x75, 0x73, 0x69, 0x6e, 0x65,
-	0x73, 0x73, 0x65, 0x73, 0x22, 0x56, 0x0a, 0x1a, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42, 0x6f,
-	0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64, 0x42, 0x75, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x1f, 0x0a, 0x0b, 0x62,
-	0x75, 0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x0a, 0x62, 0x75, 0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x49, 0x64, 0x22, 0x1d, 0x0a, 0x1b,
-	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64,
-	0x42, 0x75, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x45, 0x0a, 0x1a, 0x44,
-	0x65, 0x6c, 0x65, 0x74, 0x65, 0x42, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64, 0x42,
-	0x75, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65,
-	0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72,
-	0x49, 0x64, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02,
-	0x69, 0x64, 0x22, 0x1d, 0x0a, 0x1b, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x42, 0x6f, 0x6f, 0x6b,
-	0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64, 0x42, 0x75, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x22, 0x46, 0x0a, 0x1b, 0x47, 0x65, 0x74, 0x42, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b,
-	0x65, 0x64, 0x42, 0x75, 0x73, 0x42, 0x79, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64,
-	0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x22, 0x68, 0x0a, 0x1c, 0x47, 0x65, 0x74,
-	0x42, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64, 0x42, 0x75, 0x73, 0x42, 0x79, 0x49,
-	0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65,
-	0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72,
-	0x49, 0x64, 0x12, 0x1f, 0x0a, 0x0b, 0x62, 0x75, 0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x5f, 0x69,
-	0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x62, 0x75, 0x73, 0x69, 0x6e, 0x65, 0x73,
-	0x73, 0x49, 0x64, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x02, 0x69, 0x64, 0x22, 0x35, 0x0a, 0x1a, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x42, 0x6f, 0x6f,
-	0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64, 0x42, 0x75, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x22, 0x72, 0x0a, 0x1b, 0x47, 0x65,
+	0x73, 0x73, 0x65, 0x73, 0x22, 0x5b, 0x0a, 0x1f, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42, 0x6f,
+	0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64, 0x42, 0x75, 0x73, 0x69, 0x6e, 0x65, 0x73, 0x73,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f,
+	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64,
+	0x12, 0x1f, 0x0a, 0x0b, 0x62, 0x75, 0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x5f, 0x69, 0x64, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x62, 0x75, 0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x49,
+	0x64, 0x22, 0x33, 0x0a, 0x10, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42, 0x6f, 0x6f, 0x6b, 0x6d,
+	0x61, 0x72, 0x6b, 0x65, 0x64, 0x12, 0x1f, 0x0a, 0x0b, 0x62, 0x75, 0x73, 0x69, 0x6e, 0x65, 0x73,
+	0x73, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x62, 0x75, 0x73, 0x69,
+	0x6e, 0x65, 0x73, 0x73, 0x49, 0x64, 0x22, 0x22, 0x0a, 0x20, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
+	0x42, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64, 0x42, 0x75, 0x73, 0x69, 0x6e, 0x65,
+	0x73, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x4a, 0x0a, 0x1f, 0x44, 0x65,
+	0x6c, 0x65, 0x74, 0x65, 0x42, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64, 0x42, 0x75,
+	0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a,
+	0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06,
+	0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x22, 0x0a, 0x10, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65,
+	0x42, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x22, 0x0a, 0x20, 0x44, 0x65,
+	0x6c, 0x65, 0x74, 0x65, 0x42, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64, 0x42, 0x75,
+	0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x4b,
+	0x0a, 0x20, 0x47, 0x65, 0x74, 0x42, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64, 0x42,
+	0x75, 0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x42, 0x79, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02,
+	0x69, 0x64, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x22, 0x6d, 0x0a, 0x21, 0x47,
+	0x65, 0x74, 0x42, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64, 0x42, 0x75, 0x73, 0x69,
+	0x6e, 0x65, 0x73, 0x73, 0x42, 0x79, 0x49, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x1f, 0x0a, 0x0b, 0x62, 0x75, 0x73,
+	0x69, 0x6e, 0x65, 0x73, 0x73, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a,
+	0x62, 0x75, 0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x49, 0x64, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64,
+	0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x3a, 0x0a, 0x1f, 0x47, 0x65,
 	0x74, 0x41, 0x6c, 0x6c, 0x42, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64, 0x42, 0x75,
-	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x53, 0x0a, 0x0a, 0x62, 0x75, 0x73,
-	0x69, 0x6e, 0x65, 0x73, 0x73, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x33, 0x2e,
-	0x62, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64, 0x5f, 0x62, 0x75, 0x73, 0x69, 0x6e,
-	0x65, 0x73, 0x73, 0x65, 0x73, 0x2e, 0x47, 0x65, 0x74, 0x42, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72,
-	0x6b, 0x65, 0x64, 0x42, 0x75, 0x73, 0x42, 0x79, 0x49, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x52, 0x0a, 0x62, 0x75, 0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x65, 0x73, 0x32, 0x17,
-	0x0a, 0x15, 0x42, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64, 0x5f, 0x42, 0x75, 0x73,
-	0x69, 0x6e, 0x65, 0x73, 0x73, 0x65, 0x73, 0x42, 0x0c, 0x5a, 0x0a, 0x67, 0x65, 0x6e, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x73, 0x2f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a,
+	0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06,
+	0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x22, 0x7c, 0x0a, 0x20, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c,
+	0x42, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64, 0x42, 0x75, 0x73, 0x69, 0x6e, 0x65,
+	0x73, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x58, 0x0a, 0x0a, 0x62, 0x75,
+	0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x38,
+	0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64, 0x5f, 0x62, 0x75, 0x73, 0x69,
+	0x6e, 0x65, 0x73, 0x73, 0x65, 0x73, 0x2e, 0x47, 0x65, 0x74, 0x42, 0x6f, 0x6f, 0x6b, 0x6d, 0x61,
+	0x72, 0x6b, 0x65, 0x64, 0x42, 0x75, 0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x42, 0x79, 0x49, 0x64,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52, 0x0a, 0x62, 0x75, 0x73, 0x69, 0x6e, 0x65,
+	0x73, 0x73, 0x65, 0x73, 0x32, 0xda, 0x04, 0x0a, 0x15, 0x42, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72,
+	0x6b, 0x65, 0x64, 0x5f, 0x42, 0x75, 0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x65, 0x73, 0x12, 0x8d,
+	0x01, 0x0a, 0x18, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72,
+	0x6b, 0x65, 0x64, 0x42, 0x75, 0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x12, 0x36, 0x2e, 0x62, 0x6f,
+	0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64, 0x5f, 0x62, 0x75, 0x73, 0x69, 0x6e, 0x65, 0x73,
+	0x73, 0x65, 0x73, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42, 0x6f, 0x6f, 0x6b, 0x6d, 0x61,
+	0x72, 0x6b, 0x65, 0x64, 0x42, 0x75, 0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x37, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64,
+	0x5f, 0x62, 0x75, 0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x65, 0x73, 0x2e, 0x43, 0x72, 0x65, 0x61,
+	0x74, 0x65, 0x42, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64, 0x42, 0x75, 0x73, 0x69,
+	0x6e, 0x65, 0x73, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x8d,
+	0x01, 0x0a, 0x18, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x42, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72,
+	0x6b, 0x65, 0x64, 0x42, 0x75, 0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x12, 0x36, 0x2e, 0x62, 0x6f,
+	0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64, 0x5f, 0x62, 0x75, 0x73, 0x69, 0x6e, 0x65, 0x73,
+	0x73, 0x65, 0x73, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x42, 0x6f, 0x6f, 0x6b, 0x6d, 0x61,
+	0x72, 0x6b, 0x65, 0x64, 0x42, 0x75, 0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x37, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64,
+	0x5f, 0x62, 0x75, 0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x65, 0x73, 0x2e, 0x44, 0x65, 0x6c, 0x65,
+	0x74, 0x65, 0x42, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64, 0x42, 0x75, 0x73, 0x69,
+	0x6e, 0x65, 0x73, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x90,
+	0x01, 0x0a, 0x19, 0x47, 0x65, 0x74, 0x42, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64,
+	0x42, 0x75, 0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x42, 0x79, 0x49, 0x64, 0x12, 0x37, 0x2e, 0x62,
+	0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64, 0x5f, 0x62, 0x75, 0x73, 0x69, 0x6e, 0x65,
+	0x73, 0x73, 0x65, 0x73, 0x2e, 0x47, 0x65, 0x74, 0x42, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b,
+	0x65, 0x64, 0x42, 0x75, 0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x42, 0x79, 0x49, 0x64, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x38, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b,
+	0x65, 0x64, 0x5f, 0x62, 0x75, 0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x65, 0x73, 0x2e, 0x47, 0x65,
+	0x74, 0x42, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64, 0x42, 0x75, 0x73, 0x69, 0x6e,
+	0x65, 0x73, 0x73, 0x42, 0x79, 0x49, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
+	0x00, 0x12, 0x8d, 0x01, 0x0a, 0x18, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x42, 0x6f, 0x6f, 0x6b,
+	0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64, 0x42, 0x75, 0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x12, 0x36,
+	0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64, 0x5f, 0x62, 0x75, 0x73, 0x69,
+	0x6e, 0x65, 0x73, 0x73, 0x65, 0x73, 0x2e, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x42, 0x6f, 0x6f,
+	0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64, 0x42, 0x75, 0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x37, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72,
+	0x6b, 0x65, 0x64, 0x5f, 0x62, 0x75, 0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x65, 0x73, 0x2e, 0x47,
+	0x65, 0x74, 0x41, 0x6c, 0x6c, 0x42, 0x6f, 0x6f, 0x6b, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x64, 0x42,
+	0x75, 0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
+	0x00, 0x42, 0x0c, 0x5a, 0x0a, 0x67, 0x65, 0x6e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x73, 0x2f, 0x62,
+	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -477,21 +616,31 @@ func file_bookmarked_businesses_proto_rawDescGZIP() []byte {
 	return file_bookmarked_businesses_proto_rawDescData
 }
 
-var file_bookmarked_businesses_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_bookmarked_businesses_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_bookmarked_businesses_proto_goTypes = []any{
-	(*CreateBookmarkedBusRequest)(nil),   // 0: bookmarked_businesses.CreateBookmarkedBusRequest
-	(*CreateBookmarkedBusResponse)(nil),  // 1: bookmarked_businesses.CreateBookmarkedBusResponse
-	(*DeleteBookmarkedBusRequest)(nil),   // 2: bookmarked_businesses.DeleteBookmarkedBusRequest
-	(*DeleteBookmarkedBusResponse)(nil),  // 3: bookmarked_businesses.DeleteBookmarkedBusResponse
-	(*GetBookmarkedBusByIdRequest)(nil),  // 4: bookmarked_businesses.GetBookmarkedBusByIdRequest
-	(*GetBookmarkedBusByIdResponse)(nil), // 5: bookmarked_businesses.GetBookmarkedBusByIdResponse
-	(*GetAllBookmarkedBusRequest)(nil),   // 6: bookmarked_businesses.GetAllBookmarkedBusRequest
-	(*GetAllBookmarkedBusResponse)(nil),  // 7: bookmarked_businesses.GetAllBookmarkedBusResponse
+	(*CreateBookmarkedBusinessRequest)(nil),   // 0: bookmarked_businesses.CreateBookmarkedBusinessRequest
+	(*CreateBookmarked)(nil),                  // 1: bookmarked_businesses.CreateBookmarked
+	(*CreateBookmarkedBusinessResponse)(nil),  // 2: bookmarked_businesses.CreateBookmarkedBusinessResponse
+	(*DeleteBookmarkedBusinessRequest)(nil),   // 3: bookmarked_businesses.DeleteBookmarkedBusinessRequest
+	(*DeleteBookmarked)(nil),                  // 4: bookmarked_businesses.DeleteBookmarked
+	(*DeleteBookmarkedBusinessResponse)(nil),  // 5: bookmarked_businesses.DeleteBookmarkedBusinessResponse
+	(*GetBookmarkedBusinessByIdRequest)(nil),  // 6: bookmarked_businesses.GetBookmarkedBusinessByIdRequest
+	(*GetBookmarkedBusinessByIdResponse)(nil), // 7: bookmarked_businesses.GetBookmarkedBusinessByIdResponse
+	(*GetAllBookmarkedBusinessRequest)(nil),   // 8: bookmarked_businesses.GetAllBookmarkedBusinessRequest
+	(*GetAllBookmarkedBusinessResponse)(nil),  // 9: bookmarked_businesses.GetAllBookmarkedBusinessResponse
 }
 var file_bookmarked_businesses_proto_depIdxs = []int32{
-	5, // 0: bookmarked_businesses.GetAllBookmarkedBusResponse.businesses:type_name -> bookmarked_businesses.GetBookmarkedBusByIdResponse
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
+	7, // 0: bookmarked_businesses.GetAllBookmarkedBusinessResponse.businesses:type_name -> bookmarked_businesses.GetBookmarkedBusinessByIdResponse
+	0, // 1: bookmarked_businesses.Bookmarked_Businesses.CreateBookmarkedBusiness:input_type -> bookmarked_businesses.CreateBookmarkedBusinessRequest
+	3, // 2: bookmarked_businesses.Bookmarked_Businesses.DeleteBookmarkedBusiness:input_type -> bookmarked_businesses.DeleteBookmarkedBusinessRequest
+	6, // 3: bookmarked_businesses.Bookmarked_Businesses.GetBookmarkedBusinessById:input_type -> bookmarked_businesses.GetBookmarkedBusinessByIdRequest
+	8, // 4: bookmarked_businesses.Bookmarked_Businesses.GetAllBookmarkedBusiness:input_type -> bookmarked_businesses.GetAllBookmarkedBusinessRequest
+	2, // 5: bookmarked_businesses.Bookmarked_Businesses.CreateBookmarkedBusiness:output_type -> bookmarked_businesses.CreateBookmarkedBusinessResponse
+	5, // 6: bookmarked_businesses.Bookmarked_Businesses.DeleteBookmarkedBusiness:output_type -> bookmarked_businesses.DeleteBookmarkedBusinessResponse
+	7, // 7: bookmarked_businesses.Bookmarked_Businesses.GetBookmarkedBusinessById:output_type -> bookmarked_businesses.GetBookmarkedBusinessByIdResponse
+	9, // 8: bookmarked_businesses.Bookmarked_Businesses.GetAllBookmarkedBusiness:output_type -> bookmarked_businesses.GetAllBookmarkedBusinessResponse
+	5, // [5:9] is the sub-list for method output_type
+	1, // [1:5] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
 	1, // [1:1] is the sub-list for extension extendee
 	0, // [0:1] is the sub-list for field type_name
@@ -504,7 +653,7 @@ func file_bookmarked_businesses_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_bookmarked_businesses_proto_msgTypes[0].Exporter = func(v any, i int) any {
-			switch v := v.(*CreateBookmarkedBusRequest); i {
+			switch v := v.(*CreateBookmarkedBusinessRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -516,7 +665,7 @@ func file_bookmarked_businesses_proto_init() {
 			}
 		}
 		file_bookmarked_businesses_proto_msgTypes[1].Exporter = func(v any, i int) any {
-			switch v := v.(*CreateBookmarkedBusResponse); i {
+			switch v := v.(*CreateBookmarked); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -528,7 +677,7 @@ func file_bookmarked_businesses_proto_init() {
 			}
 		}
 		file_bookmarked_businesses_proto_msgTypes[2].Exporter = func(v any, i int) any {
-			switch v := v.(*DeleteBookmarkedBusRequest); i {
+			switch v := v.(*CreateBookmarkedBusinessResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -540,7 +689,7 @@ func file_bookmarked_businesses_proto_init() {
 			}
 		}
 		file_bookmarked_businesses_proto_msgTypes[3].Exporter = func(v any, i int) any {
-			switch v := v.(*DeleteBookmarkedBusResponse); i {
+			switch v := v.(*DeleteBookmarkedBusinessRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -552,7 +701,7 @@ func file_bookmarked_businesses_proto_init() {
 			}
 		}
 		file_bookmarked_businesses_proto_msgTypes[4].Exporter = func(v any, i int) any {
-			switch v := v.(*GetBookmarkedBusByIdRequest); i {
+			switch v := v.(*DeleteBookmarked); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -564,7 +713,7 @@ func file_bookmarked_businesses_proto_init() {
 			}
 		}
 		file_bookmarked_businesses_proto_msgTypes[5].Exporter = func(v any, i int) any {
-			switch v := v.(*GetBookmarkedBusByIdResponse); i {
+			switch v := v.(*DeleteBookmarkedBusinessResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -576,7 +725,7 @@ func file_bookmarked_businesses_proto_init() {
 			}
 		}
 		file_bookmarked_businesses_proto_msgTypes[6].Exporter = func(v any, i int) any {
-			switch v := v.(*GetAllBookmarkedBusRequest); i {
+			switch v := v.(*GetBookmarkedBusinessByIdRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -588,7 +737,31 @@ func file_bookmarked_businesses_proto_init() {
 			}
 		}
 		file_bookmarked_businesses_proto_msgTypes[7].Exporter = func(v any, i int) any {
-			switch v := v.(*GetAllBookmarkedBusResponse); i {
+			switch v := v.(*GetBookmarkedBusinessByIdResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_bookmarked_businesses_proto_msgTypes[8].Exporter = func(v any, i int) any {
+			switch v := v.(*GetAllBookmarkedBusinessRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_bookmarked_businesses_proto_msgTypes[9].Exporter = func(v any, i int) any {
+			switch v := v.(*GetAllBookmarkedBusinessResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -606,7 +779,7 @@ func file_bookmarked_businesses_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_bookmarked_businesses_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -1,92 +1,113 @@
 package postgres
 
 import (
-	pb "business/genprotos"
-	"database/sql"
-	"encoding/json"
-	"fmt"
-	"io"
-	"log"
-	"net/http"
+    pb "business/genprotos"
+    "database/sql"
+    "encoding/json"
+    "fmt"
+    "io"
+    "log"
+    "net/http"
 )
 
 type LocationStorage struct {
-	db *sql.DB
+    db *sql.DB
 }
 
 func NewLocationStorage(db *sql.DB) *LocationStorage {
-	return &LocationStorage{db: db}
+    return &LocationStorage{db: db}
 }
 
 type GeocodingResponse struct {
-	Address struct {
-		Road     string `json:"road"`
-		City     string `json:"city"`
-		Country  string `json:"country"`
-		Postcode string `json:"postcode"`
-	} `json:"address"`
+    PlaceID     int    `json:"place_id"`
+    Licence     string `json:"licence"`
+    OsmType     string `json:"osm_type"`
+    OsmID       int    `json:"osm_id"`
+    Lat         string `json:"lat"`
+    Lon         string `json:"lon"`
+    DisplayName string `json:"display_name"`
+    Address     struct {
+        HouseNumber   string `json:"house_number"`
+        Road          string `json:"road"`
+        Neighbourhood string `json:"neighbourhood"`
+        County        string `json:"county"`
+        City          string `json:"city"`
+        Postcode      string `json:"postcode"`
+        Country       string `json:"country"`
+        CountryCode   string `json:"country_code"`
+    } `json:"address"`
+    BoundingBox []string `json:"boundingbox"`
 }
 
 func getAddressFromCoordinates(lat, lon, apiKey string) (string, error) {
-	url := fmt.Sprintf("https://geocode.maps.co/reverse?lat=%s&lon=%s&api_key=%s", lat, lon, apiKey)
-	resp, err := http.Get(url)
-	if err != nil {
-		return "", fmt.Errorf("failed to send request: %v", err)
-	}
-	defer resp.Body.Close()
+    url := fmt.Sprintf("https://geocode.maps.co/reverse?lat=%s&lon=%s&api_key=%s", lat, lon, apiKey)
+    resp, err := http.Get(url)
+    if err != nil {
+        return "", fmt.Errorf("failed to send request: %v", err)
+    }
+    defer resp.Body.Close()
 
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return "", fmt.Errorf("failed to read response body: %v", err)
-	}
+    if resp.StatusCode != http.StatusOK {
+        return "", fmt.Errorf("unexpected status code: %d", resp.StatusCode)
+    }
 
-	var geocodeResponse GeocodingResponse
-	err = json.Unmarshal(body, &geocodeResponse)
-	if err != nil {
-		return "", fmt.Errorf("failed to unmarshal response: %v", err)
-	}
+    body, err := io.ReadAll(resp.Body)
+    if err != nil {
+        return "", fmt.Errorf("failed to read response body: %v", err)
+    }
 
-	address := fmt.Sprintf("%s, %s, %s, %s",
-		geocodeResponse.Address.Road,
-		geocodeResponse.Address.City,
-		geocodeResponse.Address.Country,
-		geocodeResponse.Address.Postcode)
 
-	return address, nil
+    var geocodeResponse GeocodingResponse
+    err = json.Unmarshal(body, &geocodeResponse)
+    if err != nil {
+        return "", fmt.Errorf("failed to parse geocode response: %v", err)
+    }
+
+
+    address := fmt.Sprintf("%s %s, %s, %s, %s, %s, %s",
+        geocodeResponse.Address.HouseNumber,
+        geocodeResponse.Address.Road,
+        geocodeResponse.Address.Neighbourhood,
+        geocodeResponse.Address.County,
+        geocodeResponse.Address.City,
+        geocodeResponse.Address.Postcode,
+        geocodeResponse.Address.Country)
+
+    return address, nil
 }
 
 func (l *LocationStorage) CreateLocation(req *pb.CreateLocationRequest) (*pb.CreateLocationResponse, error) {
-	apiKey := "66e9901ee798b172186971fvy42a182"
+    apiKey := "66e9901ee798b172186971fvy42a182"
 
-	lat := fmt.Sprintf("%f", req.Latitude)
-	lon := fmt.Sprintf("%f", req.Longitude)
+    lat := fmt.Sprintf("%f", req.Latitude)
+    lon := fmt.Sprintf("%f", req.Longitude)
 
-	var address string
-	if req.Address == "" {
-		var err error
-		address, err = getAddressFromCoordinates(lat, lon, apiKey)
-		if err != nil {
-			log.Printf("Failed to get address from coordinates: %v", err)
-			return nil, err
-		}
-	} else {
-		address = req.Address
-	}
+    var address string
+    if req.Address == "" || req.Address == "string" {
+        var err error
+        address, err = getAddressFromCoordinates(lat, lon, apiKey)
+        if err != nil {
+            return nil, err
+        }
+    } else {
+        address = req.Address
+    }
 
-	query := `INSERT INTO locations (latitude, longitude, address) VALUES ($1, $2, $3) RETURNING id`
-	var locationID string
-	err := l.db.QueryRow(query, req.Latitude, req.Longitude, address).Scan(&locationID)
-	if err != nil {
-		log.Printf("Failed to insert location: %v", err)
-		return nil, err
-	}
+    query := `INSERT INTO locations (latitude, longitude, address) VALUES ($1, $2, $3) RETURNING id`
+    var locationID string
+    err := l.db.QueryRow(query, req.Latitude, req.Longitude, address).Scan(&locationID)
+    if err != nil {
+        return nil, err
+    }
 
-	response := &pb.CreateLocationResponse{
-		Id: locationID,
-	}
+    response := &pb.CreateLocationResponse{
+        Id: locationID,
+    }
 
-	return response, nil
+    return response, nil
 }
+
+
 
 func (l *LocationStorage) DeleteLocation(req *pb.DeleteLocationRequest)(*pb.DeleteLocationResponse, error){
 	query := `DELETE FROM locations WHERE id = $1`
